@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foruhhanime</title>
+<meta name="description" content="Browse, search, and track what's airing this season.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wordmark">Foruhhanime<span class="dot">.</span></div>
+  <form class="searchbox" id="searchForm">
+    <input type="text" id="searchInput" placeholder="Search a title…" autocomplete="off">
+    <button type="submit" aria-label="Search">→</button>
+  </form>
+</header>
+
+<main>
+
+  <section class="hero" id="hero">
+    <div class="hero-skeleton"></div>
+  </section>
+
+  <section class="row" id="searchResults" hidden>
+    <h2>Results for <span id="searchTermLabel"></span></h2>
+    <div class="grid" id="searchGrid"></div>
+  </section>
+
+  <section class="row" id="seasonRow">
+    <h2>Airing this season</h2>
+    <div class="grid" id="seasonGrid"></div>
+  </section>
+
+  <section class="row" id="topRow">
+    <h2>Highest rated, all time</h2>
+    <div class="grid" id="topGrid"></div>
+  </section>
+
+</main>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Watch Party overlay: synced trailer + voice call -->
+<div class="wp-overlay" id="wpOverlay" hidden>
+  <div class="wp-panel">
+    <button class="wp-close" id="wpClose" aria-label="Close watch party">×</button>
+
+    <div class="wp-setup" id="wpSetup">
+      <h3 id="wpTitle">Watch party</h3>
+      <p class="wp-sub">Sync the trailer and talk over it with your person — no episode video, just the official PV plus your voices.</p>
+
+      <div class="wp-choice">
+        <button class="wp-btn wp-btn-primary" id="wpStartBtn">Start a room</button>
+        <div class="wp-or">or</div>
+        <div class="wp-join-row">
+          <input type="text" id="wpJoinCode" placeholder="Enter room code" maxlength="8" autocapitalize="characters">
+          <button class="wp-btn" id="wpJoinBtn">Join</button>
+        </div>
+      </div>
+      <p class="wp-status" id="wpStatus"></p>
+    </div>
+
+    <div class="wp-room" id="wpRoom" hidden>
+      <div class="wp-video-wrap">
+        <div id="wpPlayer"></div>
+      </div>
+      <div class="wp-callbar" id="wpCallbar">
+        <div class="wp-code-chip" id="wpCodeChip" hidden>
+          Code: <span id="wpCodeText"></span>
+          <button id="wpCopyCode" aria-label="Copy code">copy</button>
+        </div>
+        <div class="wp-callbar-controls">
+          <button class="wp-round-btn" id="wpMicBtn" aria-label="Mute microphone">🎤</button>
+          <span class="wp-connstate" id="wpConnState">Connecting…</span>
+          <button class="wp-round-btn wp-leave" id="wpLeaveBtn" aria-label="Leave watch party">✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Have a room code? <a href="#" id="wpJoinLink">Join a watch party →</a></p>
+  <p>Listings and cover art via the <a href="https://jikan.moe" target="_blank" rel="noopener">Jikan API</a>, an unofficial MyAnimeList API. Foruhhanime indexes nothing itself — every title links back to MyAnimeList.</p>
+</footer>
+
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="script.js"></script>
+<script src="watchparty.js"></script>
+</body>
+</html>
