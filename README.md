@@ -1,4 +1,4 @@
-# KOYOMI — an anime almanac
+# Foruhhanime
 
 A free, static anime browsing site. No backend, no API key, no build step —
 just HTML/CSS/JS pulling live data from the [Jikan API](https://jikan.moe)
@@ -35,7 +35,7 @@ python3 -m http.server 8000
 ```bash
 cd anime-site
 git add .
-git commit -m "Initial commit: KOYOMI anime site"
+git commit -m "Initial commit: Foruhhanime site"
 git branch -M main
 git remote add origin https://github.com/<your-username>/koyomi.git
 git push -u origin main

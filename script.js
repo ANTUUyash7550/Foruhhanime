@@ -73,9 +73,19 @@ function openModal(anime){
       </div>
     </div>
     <p class="modal-synopsis">${escapeHtml(anime.synopsis) || "No synopsis available."}</p>
-    <a class="modal-link" href="${anime.url}" target="_blank" rel="noopener">View on MyAnimeList →</a>
+    <div class="modal-actions">
+      <a class="modal-link" href="${anime.url}" target="_blank" rel="noopener">View on MyAnimeList →</a>
+      ${anime.trailer?.youtube_id ? `<button class="modal-link wp-open-btn" id="wpOpenBtn">Watch trailer together →</button>` : ""}
+    </div>
   `;
   modal.hidden = false;
+
+  if(anime.trailer?.youtube_id){
+    document.getElementById("wpOpenBtn").addEventListener("click", () => {
+      modal.hidden = true;
+      window.openWatchParty(anime.trailer.youtube_id, anime.title);
+    });
+  }
 }
 
 document.getElementById("modalClose").addEventListener("click", () => modal.hidden = true);
